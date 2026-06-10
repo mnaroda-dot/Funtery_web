@@ -80,6 +80,17 @@ a {
   font-weight: 650;
 }
 
+.nav a {
+  padding: 6px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal);
+}
+
 .header-cta {
   justify-self: end;
   padding: 12px 18px;
@@ -219,6 +230,22 @@ h3 {
   object-fit: cover;
 }
 
+.page-hero {
+  padding: 96px 5vw 72px;
+  background:
+    linear-gradient(135deg, rgba(19, 167, 180, 0.10), transparent 34%),
+    var(--paper);
+  border-bottom: 1px solid var(--line);
+}
+
+.page-hero h1 {
+  max-width: 980px;
+}
+
+.page-hero .lead {
+  max-width: 780px;
+}
+
 .intro {
   padding: 34px 5vw;
   color: var(--white);
@@ -250,12 +277,52 @@ h3 {
   gap: 18px;
 }
 
+.link-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
 .service-card {
   min-height: 430px;
   padding: 28px;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
+}
+
+.link-card,
+.material-card,
+.case-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.link-card {
+  display: block;
+  min-height: 320px;
+  padding: 26px;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.link-card.featured {
+  color: var(--white);
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.link-card p {
+  color: var(--muted);
+}
+
+.link-card.featured p {
+  color: #d9e3ec;
 }
 
 .service-card.featured {
@@ -279,6 +346,49 @@ h3 {
 .service-card:not(.featured) p,
 .service-card:not(.featured) li {
   color: var(--muted);
+}
+
+.material-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.material-card {
+  min-height: 420px;
+  padding: 28px;
+}
+
+.material-card p,
+.material-card li {
+  color: var(--muted);
+}
+
+.swatch {
+  display: block;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 28px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(15, 26, 43, 0.12);
+}
+
+.swatch.navy {
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 2px, transparent 2px 18px),
+    linear-gradient(135deg, #111827, #1d324f);
+}
+
+.swatch.dark {
+  background:
+    linear-gradient(90deg, rgba(255,255,255,.08), transparent 45%),
+    linear-gradient(135deg, #202736, #596879);
+}
+
+.swatch.work {
+  background:
+    repeating-linear-gradient(45deg, rgba(15,26,43,.08) 0 8px, transparent 8px 18px),
+    linear-gradient(135deg, #e7edf0, #bfcbd3);
 }
 
 ul {
@@ -352,6 +462,76 @@ ul {
   color: #2d3748;
   font-size: 14px;
   font-weight: 750;
+}
+
+.spec-list {
+  display: grid;
+  gap: 12px;
+}
+
+.spec-list div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 18px;
+  padding: 18px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.spec-list strong {
+  color: var(--navy);
+}
+
+.spec-list span {
+  color: var(--muted);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.case-card {
+  overflow: hidden;
+}
+
+.case-thumb {
+  min-height: 260px;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-thumb.transport {
+  background:
+    linear-gradient(135deg, rgba(15, 26, 43, 0.86), rgba(15, 26, 43, 0.12)),
+    repeating-linear-gradient(90deg, #dce5eb 0 72px, #c8d4dc 72px 80px);
+}
+
+.case-thumb.rail {
+  background:
+    radial-gradient(circle at 28% 35%, rgba(19, 167, 180, .34), transparent 24%),
+    linear-gradient(135deg, #eef3f5, #9dacb7);
+}
+
+.case-thumb.uniform {
+  background:
+    linear-gradient(135deg, rgba(8, 120, 135, .82), rgba(15, 26, 43, .92)),
+    repeating-linear-gradient(45deg, rgba(255,255,255,.14) 0 4px, transparent 4px 18px);
+}
+
+.case-thumb.custom {
+  background:
+    radial-gradient(circle at 72% 24%, rgba(213, 137, 63, .58), transparent 20%),
+    linear-gradient(135deg, #f7fafb, #c8d4dc);
+}
+
+.case-body {
+  padding: 26px;
+}
+
+.case-body p:not(.eyebrow) {
+  color: var(--muted);
 }
 
 .quote-band {
@@ -446,13 +626,21 @@ textarea {
   }
 
   .service-grid,
+  .link-grid,
+  .material-grid,
+  .gallery-grid,
   .process {
     grid-template-columns: 1fr;
   }
 
   .service-card,
+  .link-card,
   .process div {
     min-height: auto;
+  }
+
+  .spec-list div {
+    grid-template-columns: 1fr;
   }
 
   .card-number,
@@ -478,6 +666,7 @@ textarea {
 
   .hero,
   .section,
+  .page-hero,
   .intro,
   .quote-band,
   .footer {
